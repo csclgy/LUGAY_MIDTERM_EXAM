@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">All Taylor Swifts Album</string>
+    <string name="affirmation1">Fearless</string>
+    <string name="affirmation2">1989</string>
+    <string name="affirmation3">Speak Now</string>
+    <string name="affirmation4">Evermore</string>
+    <string name="affirmation5">Folklore</string>
+    <string name="affirmation6">Red</string>
+    <string name="affirmation7">Midnights</string>
+    <string name="affirmation8">Lover</string>
+    <string name="affirmation9">Reputation</string>
+    <string name="affirmation10">The Tortured Poets Department</string>
+</resources>
