@@ -127,6 +127,7 @@ fun AffirmationsApp() {
 
 
 //THE WHOLE INPUT FORM FOR USER
+//input field with submit button
 @Composable
 fun inputuser(){
     Column {
