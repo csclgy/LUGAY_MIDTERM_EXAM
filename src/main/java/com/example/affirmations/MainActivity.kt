@@ -7,8 +7,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,6 +33,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -66,7 +71,14 @@ class MainActivity : ComponentActivity() {
                     inputuser()
                 }
             }
+//            var result = 0
             SubmitButton(onClick = {})
+//            if(result == 1){
+//                act2()
+//            }
+//            else{
+//
+//            }
         }
     }
 }
@@ -182,9 +194,10 @@ fun EditTextFieldd(modifier: Modifier = Modifier) {
 }
 
 //SUBMIT BUTTON
-//NOTE: DOES NOT HAVE ACTION
+//NOTE: AFTER CLICKING THE BUTTON DIRECTS YOU TO THE THANK YOU MESSAGE!
 @Composable
 fun SubmitButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    var result by remember { mutableStateOf(0) }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -193,8 +206,14 @@ fun SubmitButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
             .size(200.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
-        Button(onClick = { onClick() }) {
+        Button(onClick = { result = 1 }) {
             Text("Submit")
+        }
+    }
+
+    Column{
+        if (result == 1){
+            thankyou()
         }
     }
 }
@@ -235,6 +254,62 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
         }
     }
 }
+
+//THANK YOU MESSAGE AFTER CLICKING THE SUBMIT BUTTON
+@Composable
+fun thankyou() {
+    var resultt by remember { mutableStateOf(0) }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = Color(99, 70, 99),
+
+
+                ),
+            shape = RectangleShape,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+
+
+            ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.check_circle),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(280.dp)
+                        .height(280.dp)
+                )
+                Text(
+                    text ="Form Submitted Successfully",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .padding(top = 24.dp, bottom = 8.dp)
+                )
+                Text(
+                    text = "Thank you for sharing your opinion to us!",
+                    fontSize = 16.sp
+                )
+
+            }
+
+        }
+
+        }
+
+    }
 
 
 //PREVIEW
